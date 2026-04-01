@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>썸로그 연애상담</title>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--rose:#FF6B8A;--peach:#FFB347;--coral:#FF8C69;--cream:#FFF9F5;--deep:#2D1B2E;--wg:#F7EEE9;}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--cream);color:var(--deep);overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:18px 48px;background:rgba(255,249,245,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,107,138,0.15);}
+.logo{font-family:'Gowun Batang',serif;font-size:22px;font-weight:700;color:var(--rose);letter-spacing:-0.5px;cursor:pointer;border:none;background:none;}
+.logo span{color:var(--peach);}
+nav ul{list-style:none;display:flex;gap:36px;align-items:center;}
+.nl{background:none;border:none;cursor:pointer;font-family:'Noto Sans KR',sans-serif;font-size:14px;font-weight:500;color:var(--deep);padding:0 0 4px;letter-spacing:0.3px;position:relative;transition:color 0.3s;}
+.nl::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--rose);transition:width 0.3s;}
+.nl:hover{color:var(--rose);}.nl:hover::after{width:100%;}
+.nc{background:var(--rose);color:#fff;border:none;cursor:pointer;font-family:'Noto Sans KR',sans-serif;font-size:14px;font-weight:700;padding:10px 22px;border-radius:50px;transition:transform 0.2s,box-shadow 0.2s;}
+.nc:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,107,138,0.4);}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding-top:80px;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 20% 20%,rgba(255,107,138,0.18) 0%,transparent 60%),radial-gradient(ellipse 60% 50% at 80% 70%,rgba(201,160,220,0.2) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 60% 10%,rgba(255,179,71,0.15) 0%,transparent 50%);}
+.hero-dots{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,107,138,0.2) 1px,transparent 1px);background-size:40px 40px;opacity:0.5;}
+.hc{position:relative;text-align:center;max-width:780px;padding:0 24px;animation:fu 0.9s cubic-bezier(0.22,1,0.36,1) both;}
+@keyframes fu{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+.hbadge{display:inline-block;background:rgba(255,107,138,0.12);border:1px solid rgba(255,107,138,0.3);color:var(--rose);border-radius:50px;padding:6px 20px;font-size:13px;font-weight:500;margin-bottom:28px;}
+.hc h1{font-family:'Gowun Batang',serif;font-size:clamp(42px,7vw,82px);line-height:1.15;letter-spacing:-2px;animation:fu 0.9s 0.2s cubic-bezier(0.22,1,0.36,1) both;}
+.hc h1 em{font-style:normal;color:var(--rose);position:relative;display:inline-block;}
+.hc h1 em::after{content:'';position:absolute;bottom:4px;left:0;right:0;height:6px;background:linear-gradient(90deg,var(--peach),var(--rose));border-radius:3px;opacity:0.35;z-index:-1;}
+.hsub{margin:24px 0 44px;font-size:18px;color:#6B5060;line-height:1.8;font-weight:300;animation:fu 0.9s 0.3s cubic-bezier(0.22,1,0.36,1) both;}
+.hbtns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;animation:fu 0.9s 0.4s cubic-bezier(0.22,1,0.36,1) both;}
+.bp{background:linear-gradient(135deg,var(--rose),var(--coral));color:#fff;border:none;padding:16px 40px;border-radius:50px;font-size:16px;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif;box-shadow:0 8px 32px rgba(255,107,138,0.4);transition:transform 0.25s,box-shadow 0.25s;}
+.bp:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(255,107,138,0.5);}
+.bs{background:transparent;color:var(--rose);border:2px solid var(--rose);padding:14px 36px;border-radius:50px;font-size:16px;font-weight:500;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:background 0.25s,color 0.25s;}
+.bs:hover{background:var(--rose);color:#fff;}
+.hearts{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+.heart{position:absolute;font-size:20px;opacity:0;animation:fh linear infinite;}
+@keyframes fh{0%{opacity:0;transform:translateY(0) rotate(0deg)}10%{opacity:0.6}90%{opacity:0.3}100%{opacity:0;transform:translateY(-100vh) rotate(360deg)}}
+.stats-bar{background:linear-gradient(135deg,var(--rose),var(--coral));padding:32px 48px;display:flex;justify-content:center;gap:80px;flex-wrap:wrap;}
+.stat{text-align:center;color:#fff;}
+.stat-num{font-family:'Gowun Batang',serif;font-size:42px;font-weight:700;line-height:1;}
+.stat-label{font-size:13px;opacity:0.85;margin-top:4px;letter-spacing:0.5px;}
+section{padding:100px 48px;max-width:1100px;margin:0 auto;}
+.stag{display:inline-block;background:rgba(255,107,138,0.1);color:var(--rose);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:4px;margin-bottom:20px;}
+h2.stitle{font-family:'Gowun Batang',serif;font-size:clamp(32px,5vw,52px);line-height:1.2;letter-spacing:-1px;margin-bottom:16px;}
+.sdesc{color:#7A6070;font-size:17px;line-height:1.8;max-width:560px;margin-bottom:60px;}
+#about{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.about-visual{position:relative;display:flex;justify-content:center;align-items:center;}
+.about-circle{width:320px;height:320px;border-radius:50%;background:linear-gradient(135deg,rgba(255,107,138,0.15),rgba(201,160,220,0.2));border:2px solid rgba(255,107,138,0.2);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px;position:relative;}
+.about-circle::before{content:'';position:absolute;inset:-12px;border-radius:50%;border:1px dashed rgba(255,107,138,0.3);animation:spin 30s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ae{font-size:56px;margin-bottom:16px;}
+.act{font-family:'Gowun Batang',serif;font-size:20px;line-height:1.5;color:var(--rose);}
+.af{display:flex;flex-direction:column;gap:20px;margin-top:40px;}
+.fi{display:flex;gap:16px;align-items:flex-start;padding:20px;border-radius:16px;background:var(--wg);border:1px solid rgba(255,107,138,0.1);transition:transform 0.2s,box-shadow 0.2s;}
+.fi:hover{transform:translateX(6px);box-shadow:0 4px 20px rgba(255,107,138,0.1);}
+.fic{font-size:28px;flex-shrink:0;}
+.ft h4{font-size:15px;font-weight:700;margin-bottom:4px;}
+.ft p{font-size:13px;color:#7A6070;line-height:1.6;}
+.ks{max-width:1100px;margin:0 auto;padding:0 48px 80px;text-align:center;}
+.kg{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;text-align:left;}
+.kc{background:#fff;border-radius:24px;border:1px solid rgba(255,107,138,0.1);box-shadow:0 4px 24px rgba(255,107,138,0.07);overflow:hidden;transition:transform 0.3s,box-shadow 0.3s;}
+.kc:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(255,107,138,0.13);}
+.kl{padding:14px 20px;font-size:12px;font-weight:700;color:var(--rose);background:rgba(255,107,138,0.07);border-bottom:1px solid rgba(255,107,138,0.1);}
+.kp{background:#b2c7d9;border-radius:0 0 18px 18px;overflow:hidden;}
+.kh{background:#9ab5cc;display:flex;align-items:center;justify-content:space-between;padding:12px 16px;}
+.kbk,.km{color:#fff;font-size:18px;}
+.kn{color:#fff;font-size:14px;font-weight:700;}
+.kb{padding:16px 12px 8px;display:flex;flex-direction:column;gap:10px;}
+.kr{display:flex;align-items:flex-end;gap:8px;}
+.kr.r{justify-content:flex-end;}
+.kav{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--rose),var(--coral));color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.bb{max-width:72%;padding:9px 13px;font-size:13px;line-height:1.6;border-radius:12px;}
+.lb{background:#fff;color:#333;border-radius:0 12px 12px 12px;}
+.rb{background:#fee500;color:#333;border-radius:12px 12px 0 12px;}
+.kt{text-align:center;font-size:11px;color:rgba(255,255,255,0.7);margin:4px 0;}
+.kct{background:rgba(255,255,255,0.92);border-left:3px solid var(--rose);padding:10px 12px;border-radius:0 8px 8px 0;font-size:12px;color:#5A4050;line-height:1.6;margin-top:6px;margin-bottom:8px;}
+.how{background:linear-gradient(135deg,#fff5f8,var(--cream));border-radius:40px;padding:80px;margin:0 24px;text-align:center;}
+.how .sdesc{margin:0 auto 60px;}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative;}
+.steps::before{content:'';position:absolute;top:36px;left:calc(12.5%);right:calc(12.5%);height:2px;background:linear-gradient(90deg,var(--rose),var(--peach));opacity:0.3;z-index:0;}
+.step{position:relative;z-index:1;}
+.snum{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--rose),var(--coral));color:#fff;font-size:24px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 8px 24px rgba(255,107,138,0.35);}
+.step h4{font-size:16px;font-weight:700;margin-bottom:8px;}
+.step p{font-size:13px;color:#7A6070;line-height:1.7;}
+#services{text-align:center;}
+.sg{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.sc{background:#fff;border-radius:24px;padding:36px 28px;border:1px solid rgba(255,107,138,0.1);box-shadow:0 4px 24px rgba(255,107,138,0.06);text-align:left;position:relative;overflow:hidden;transition:transform 0.3s,box-shadow 0.3s;}
+.sc::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--rose),var(--peach));opacity:0;transition:opacity 0.3s;}
+.sc:hover{transform:translateY(-8px);box-shadow:0 20px 48px rgba(255,107,138,0.15);}
+.sc:hover::before{opacity:1;}
+.sc.ft2{background:linear-gradient(135deg,#fff5f8,#fff);border:2px solid var(--rose);}
+.sc.ft2::before{opacity:1;}
+.fb{position:absolute;top:20px;right:20px;background:var(--rose);color:#fff;font-size:11px;font-weight:700;padding:4px 12px;border-radius:50px;}
+.se{font-size:40px;margin-bottom:20px;display:block;}
+.sc h3{font-family:'Gowun Batang',serif;font-size:22px;margin-bottom:12px;letter-spacing:-0.5px;}
+.sc>p{font-size:14px;color:#7A6070;line-height:1.8;margin-bottom:24px;}
+.sp{font-size:28px;font-weight:700;color:var(--rose);}
+.sp span{font-size:14px;color:#9A8090;font-weight:400;}
+.si{margin-top:20px;padding-top:20px;border-top:1px solid rgba(255,107,138,0.1);}
+.si li{list-style:none;font-size:13px;color:#5A4050;padding:4px 0;display:flex;align-items:center;gap:8px;}
+.si li::before{content:'✓';color:var(--rose);font-weight:700;}
+.sbn{display:block;margin-top:28px;width:100%;padding:14px 20px;border-radius:50px;font-size:15px;font-weight:700;border:1px solid rgba(255,107,138,0.3);cursor:pointer;font-family:'Noto Sans KR',sans-serif;background:rgba(255,107,138,0.1);color:var(--rose);transition:all 0.25s;}
+.sbn:hover{background:var(--rose);color:#fff;transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,107,138,0.3);}
+.sc.ft2 .sbn{background:var(--rose);color:#fff;box-shadow:0 8px 24px rgba(255,107,138,0.3);}
+.sc.ft2 .sbn:hover{box-shadow:0 12px 32px rgba(255,107,138,0.5);}
+#contact{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:flex-start;}
+.ci2{padding-top:20px;}
+.cit{display:flex;gap:16px;align-items:center;padding:20px;border-radius:16px;background:var(--wg);margin-bottom:16px;}
+.cic{font-size:28px;}
+.cit h4{font-size:14px;color:#9A8090;margin-bottom:2px;}
+.cit p{font-size:16px;font-weight:600;}
+.cf{background:#fff;border-radius:28px;padding:48px;box-shadow:0 8px 48px rgba(255,107,138,0.08);border:1px solid rgba(255,107,138,0.1);}
+.cf h3{font-family:'Gowun Batang',serif;font-size:28px;margin-bottom:8px;}
+.cf>p{font-size:14px;color:#7A6070;margin-bottom:32px;}
+.fg{margin-bottom:20px;}
+.fg label{display:block;font-size:13px;font-weight:600;color:#5A4050;margin-bottom:8px;}
+.fg input,.fg select,.fg textarea{width:100%;padding:14px 18px;border:1.5px solid #E8D8DF;border-radius:12px;font-family:'Noto Sans KR',sans-serif;font-size:14px;background:var(--cream);color:var(--deep);outline:none;transition:border-color 0.2s,box-shadow 0.2s;resize:vertical;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--rose);box-shadow:0 0 0 4px rgba(255,107,138,0.1);}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.sub{width:100%;padding:16px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--rose),var(--coral));color:#fff;font-size:16px;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif;box-shadow:0 8px 24px rgba(255,107,138,0.35);transition:transform 0.25s,box-shadow 0.25s;}
+.sub:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(255,107,138,0.5);}
+.sub:disabled{opacity:0.7;cursor:not-allowed;transform:none;}
+.mo{display:none;position:fixed;inset:0;z-index:9999;background:rgba(45,27,46,0.55);backdrop-filter:blur(6px);align-items:center;justify-content:center;}
+.mo.active{display:flex;}
+.mb{background:#fff;border-radius:28px;padding:48px 40px;max-width:440px;width:90%;text-align:center;box-shadow:0 24px 64px rgba(255,107,138,0.2);animation:mp 0.35s cubic-bezier(0.22,1,0.36,1) both;}
+@keyframes mp{from{opacity:0;transform:scale(0.88) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.mi{font-size:56px;margin-bottom:16px;}
+.mb h3{font-family:'Gowun Batang',serif;font-size:24px;margin-bottom:10px;color:var(--deep);}
+.mb>p{font-size:14px;color:#7A6070;line-height:1.8;margin-bottom:8px;}
+.ms{background:#fff5f8;border-radius:14px;padding:16px 18px;margin:16px 0;text-align:left;font-size:13px;line-height:2.1;color:#5A4050;}
+.me{display:inline-block;background:rgba(255,107,138,0.08);border:1px solid rgba(255,107,138,0.25);color:var(--rose);padding:8px 20px;border-radius:50px;font-size:14px;font-weight:700;margin:8px 0 20px;}
+.mc{width:100%;padding:14px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--rose),var(--coral));color:#fff;font-size:15px;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif;box-shadow:0 8px 24px rgba(255,107,138,0.3);transition:transform 0.2s;}
+.mc:hover{transform:translateY(-2px);}
+footer{background:var(--deep);color:rgba(255,255,255,0.7);padding:48px;text-align:center;font-size:14px;line-height:2;}
+.fl{font-family:'Gowun Batang',serif;font-size:26px;color:#fff;margin-bottom:8px;}
+.fl span{color:var(--rose);}
+.rv{opacity:1;transform:translateY(0);transition:opacity 0.7s,transform 0.7s;}
+.rv.hidden{opacity:0;transform:translateY(30px);}
+.rv.visible{opacity:1;transform:translateY(0);}
+@media(max-width:900px){
+  nav{padding:16px 20px;}nav ul{gap:12px;}
+  section{padding:60px 20px;}
+  #about,#contact{grid-template-columns:1fr;gap:40px;}
+  .sg,.kg{grid-template-columns:1fr;}
+  .ks{padding:0 20px 60px;}
+  .steps{grid-template-columns:1fr 1fr;}
+  .steps::before{display:none;}
+  .stats-bar{gap:40px;padding:24px;}
+  .how{padding:48px 24px;margin:0 16px;}
+  .cf{padding:32px 24px;}
+  .fr{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <button class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">썸로그<span>💌</span></button>
+  <ul>
+    <li><button class="nl" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">소개</button></li>
+    <li><button class="nl" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">서비스</button></li>
+    <li><button class="nl" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">문의</button></li>
+    <li><button class="nc" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">상담 신청</button></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-dots"></div>
+  <div class="hearts" id="hearts"></div>
+  <div class="hc">
+    <div class="hbadge">💕 전문 연애 상담 서비스</div>
+    <h1>마음이 복잡할 땐<br><em>함께 풀어봐요</em></h1>
+    <p class="hsub">고민을 털어놓기 어려울 때, 썸로그가 함께합니다.<br>솔직하고 따뜻한 조언으로 당신의 연애를 응원할게요 💌</p>
+    <div class="hbtns">
+      <button class="bp" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">✉️ 상담 신청하기</button>
+      <button class="bs" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">서비스 알아보기</button>
+    </div>
+  </div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat"><div class="stat-num">1,200+</div><div class="stat-label">누적 상담 건수</div></div>
+  <div class="stat"><div class="stat-num">98%</div><div class="stat-label">만족도</div></div>
+  <div class="stat"><div class="stat-num">24h</div><div class="stat-label">평균 답변 시간</div></div>
+  <div class="stat"><div class="stat-num">5년+</div><div class="stat-label">상담 경력</div></div>
+</div>
+
+<section id="about" class="rv">
+  <div class="about-visual">
+    <div class="about-circle">
+      <div class="ae">💝</div>
+      <div class="act">당신의 이야기를<br>진심으로 듣겠습니다</div>
+    </div>
+  </div>
+  <div>
+    <span class="stag">About</span>
+    <h2 class="stitle">연애, 혼자 고민하지<br>마세요</h2>
+    <p class="sdesc">썸로그는 연애 고민을 가장 솔직하고 현실적으로 풀어드리는 상담 서비스입니다. 판단 없이, 따뜻하게 들어드립니다.</p>
+    <div class="af">
+      <div class="fi"><span class="fic">🔒</span><div class="ft"><h4>100% 익명 보장</h4><p>모든 상담 내용은 철저히 비밀이 보장됩니다. 안심하고 털어놓으세요.</p></div></div>
+      <div class="fi"><span class="fic">💬</span><div class="ft"><h4>빠른 맞춤 답변</h4><p>획일적인 조언이 아닌, 당신의 상황에 맞는 현실적인 조언을 드립니다.</p></div></div>
+      <div class="fi"><span class="fic">💖</span><div class="ft"><h4>진심 어린 공감</h4><p>비난이나 판단 없이 공감하며 함께 해결책을 찾아드립니다.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="ks rv">
+  <span class="stag" style="display:block;text-align:center;margin-bottom:16px;">Real Cases</span>
+  <h2 class="stitle" style="text-align:center;margin-bottom:12px;">이런 고민, 저희가 해결했어요</h2>
+  <p style="text-align:center;color:#7A6070;font-size:16px;margin-bottom:52px;">실제 상담 사례를 재구성한 예시입니다</p>
+  <div class="kg">
+    <div class="kc">
+      <div class="kl">😤 Case 1 · 연락 문제로 인한 다툼</div>
+      <div class="kp">
+        <div class="kh"><div class="kbk">‹</div><div class="kn">민준 ❤️</div><div class="km">⋯</div></div>
+        <div class="kb">
+          <div class="kr"><div class="kav">민</div><div class="bb lb">오늘 왜 연락 안 했어? 기다렸는데</div></div>
+          <div class="kr r"><div class="bb rb">나도 바빴잖아, 왜 항상 이래</div></div>
+          <div class="kr"><div class="kav">민</div><div class="bb lb">바쁘면 짧게라도 연락할 수 있잖아</div></div>
+          <div class="kr r"><div class="bb rb">그게 그렇게 힘든데 왜 이해를 못 해</div></div>
+          <div class="kr"><div class="kav">민</div><div class="bb lb">알았어, 됐어 😞</div></div>
+          <div class="kct">💡 이럴 때 뭐라고 해야 할지 모르겠다면? 썸로그에 물어보세요</div>
+        </div>
+      </div>
+    </div>
+    <div class="kc">
+      <div class="kl">😔 Case 2 · 서운함 표현 갈등</div>
+      <div class="kp">
+        <div class="kh"><div class="kbk">‹</div><div class="kn">지아 🧡</div><div class="km">⋯</div></div>
+        <div class="kb">
+          <div class="kr r"><div class="bb rb">어제 내 생일인데 선물도 없고...</div></div>
+          <div class="kr"><div class="kav">지</div><div class="bb lb">깜빡했어, 미안해 다음에 줄게</div></div>
+          <div class="kr r"><div class="bb rb">다음에? 어이없다 진짜</div></div>
+          <div class="kr"><div class="kav">지</div><div class="bb lb">왜 이렇게 예민하게 굴어</div></div>
+          <div class="kr r"><div class="bb rb">...그냥 됐어 🙁</div></div>
+          <div class="kct">💡 서운함을 제대로 전달하는 법, 썸로그가 알려드려요</div>
+        </div>
+      </div>
+    </div>
+    <div class="kc">
+      <div class="kl">😶 Case 3 · 갑작스러운 냉전</div>
+      <div class="kp">
+        <div class="kh"><div class="kbk">‹</div><div class="kn">현우 💙</div><div class="km">⋯</div></div>
+        <div class="kb">
+          <div class="kr r"><div class="bb rb">나 요즘 좀 힘들어</div></div>
+          <div class="kr"><div class="kav">현</div><div class="bb lb">응 알아 나도 바빠</div></div>
+          <div class="kr r"><div class="bb rb">...그래 알겠어</div></div>
+          <div class="kt">읽음 · 오후 11:32</div>
+          <div class="kr" style="opacity:0.4;"><div class="kav">현</div><div class="bb lb">왜 또 말이 없어</div></div>
+          <div class="kct">💡 냉전을 끝내는 첫 마디, 어떻게 시작할지 함께 고민해요</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="how rv">
+  <span class="stag">How It Works</span>
+  <h2 class="stitle" style="margin-bottom:12px;">이렇게 진행돼요</h2>
+  <p class="sdesc">간단한 4단계로 고민을 해결해 드립니다</p>
+  <div class="steps">
+    <div class="step"><div class="snum">1</div><h4>서비스 선택</h4><p>상황에 맞는 상담 플랜을 선택하세요</p></div>
+    <div class="step"><div class="snum">2</div><h4>결제 완료</h4><p>안전한 결제 시스템으로 간편하게 결제</p></div>
+    <div class="step"><div class="snum">3</div><h4>고민 전송</h4><p>자세한 상황을 솔직하게 작성해주세요</p></div>
+    <div class="step"><div class="snum">4</div><h4>답변 수신</h4><p>24시간 내 맞춤 조언을 받아보세요 💌</p></div>
+  </div>
+</div>
+
+<section id="services" class="rv" style="text-align:center;">
+  <span class="stag">Services</span>
+  <h2 class="stitle">상담 서비스</h2>
+  <p class="sdesc" style="margin:0 auto 60px;">고민의 크기에 맞게 선택하세요. 모든 상담은 진심을 다합니다.</p>
+  <div class="sg">
+    <div class="sc">
+      <span class="se">🌸</span>
+      <h3>라이트 상담</h3>
+      <p>가볍게 물어보고 싶은 연애 고민이나 빠른 조언이 필요할 때</p>
+      <div class="sp">₩9,900 <span>/ 건</span></div>
+      <ul class="si"><li>텍스트 상담 1회</li><li>48시간 내 답변</li><li>추가 질문 1회 가능</li></ul>
+      <button class="sbn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">신청하기</button>
+    </div>
+    <div class="sc ft2">
+      <span class="fb">인기 ⭐</span>
+      <span class="se">💝</span>
+      <h3>프리미엄 상담</h3>
+      <p>복잡한 연애 상황, 깊은 고민을 상세히 분석하고 전략을 제시해 드려요</p>
+      <div class="sp">₩29,900 <span>/ 건</span></div>
+      <ul class="si"><li>심층 분석 + 솔루션 제공</li><li>24시간 내 답변</li><li>추가 질문 3회 가능</li><li>카카오톡 문자 예시 제공</li></ul>
+      <button class="sbn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">신청하기</button>
+    </div>
+    <div class="sc">
+      <span class="se">👑</span>
+      <h3>VIP 상담</h3>
+      <p>장기적인 연애 전략부터 관계 회복까지, 꼼꼼한 1:1 맞춤 케어</p>
+      <div class="sp">₩59,900 <span>/ 건</span></div>
+      <ul class="si"><li>무제한 추가 질문 (7일)</li><li>12시간 내 답변</li><li>상세 플랜 로드맵 제공</li><li>문자·카카오 예시 작성</li></ul>
+      <button class="sbn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">신청하기</button>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="max-width:1100px;">
+  <div class="rv">
+    <div class="ci2">
+      <span class="stag">Contact</span>
+      <h2 class="stitle">상담 신청 &amp;<br>문의하기</h2>
+      <p class="sdesc" style="margin-bottom:40px;">궁금한 점이나 상담을 원하시면 아래 양식을 작성해 주세요. 빠르게 연락드릴게요!</p>
+      <div class="cit"><span class="cic">📧</span><div><h4>이메일</h4><p>aglz55665@gmail.com</p></div></div>
+      <div class="cit"><span class="cic">💬</span><div><h4>카카오톡 채널</h4><p>@썸로그상담</p></div></div>
+      <div class="cit"><span class="cic">⏰</span><div><h4>운영 시간</h4><p>매일 09:00 – 23:00</p></div></div>
+    </div>
+  </div>
+  <div class="rv">
+    <div class="cf">
+      <h3>상담 신청서 ✍️</h3>
+      <p>내용을 작성하시면 선택하신 플랜으로 연락드립니다.</p>
+      <div class="fr">
+        <div class="fg"><label>닉네임</label><input type="text" id="iname" placeholder="닉네임 (익명 가능)"></div>
+        <div class="fg"><label>연락 수단</label><input type="text" id="icontact" placeholder="이메일 또는 카카오 ID"></div>
+      </div>
+      <div class="fg">
+        <label>서비스 선택</label>
+        <select id="iplan">
+          <option value="">플랜을 선택하세요</option>
+          <option>🌸 라이트 상담 – ₩9,900</option>
+          <option>💝 프리미엄 상담 – ₩29,900</option>
+          <option>👑 VIP 상담 – ₩59,900</option>
+        </select>
+      </div>
+      <div class="fg"><label>고민 내용</label><textarea id="imsg" rows="6" placeholder="어떤 상황인지 자세히 적어주세요. 더 자세할수록 더 좋은 조언을 드릴 수 있어요 💕"></textarea></div>
+      <button class="sub" id="subBtn">💌 상담 신청하기</button>
+    </div>
+  </div>
+</section>
+
+<div class="mo" id="modal">
+  <div class="mb">
+    <div class="mi">💌</div>
+    <h3>상담 신청 완료!</h3>
+    <p>신청해 주셔서 감사합니다 💕<br>아래 내용으로 접수되었어요</p>
+    <div class="ms" id="msummary"></div>
+    <p style="font-size:13px;color:#7A6070;margin-bottom:4px;">직접 연락하실 경우</p>
+    <div class="me">aglz55665@gmail.com</div>
+    <button class="mc" id="mclose">확인했어요 ✓</button>
+  </div>
+</div>
+
+<footer>
+  <div class="fl">썸로그<span>💌</span></div>
+  <p>당신의 연애를 진심으로 응원합니다</p>
+  <p style="margin-top:16px;font-size:12px;opacity:0.5;">© 2024 썸로그 연애상담. All rights reserved.</p>
+</footer>
+
+<script>
+const hc=document.getElementById('hearts');
+['💕','💖','💗','💓','💝','🌸','✨'].forEach(e=>{
+  for(let i=0;i<2;i++){
+    const h=document.createElement('div');h.className='heart';h.textContent=e;
+    h.style.cssText='left:'+Math.random()*100+'%;top:'+(Math.random()*100+20)+'%;font-size:'+(14+Math.random()*16)+'px;animation-duration:'+(8+Math.random()*12)+'s;animation-delay:'+(Math.random()*8)+'s;';
+    hc.appendChild(h);
+  }
+});
+document.querySelectorAll('.rv').forEach(r=>{
+  r.classList.add('hidden');
+  new IntersectionObserver(([e])=>{
+    if(e.isIntersecting){r.classList.remove('hidden');r.classList.add('visible');}
+  },{threshold:0.05}).observe(r);
+});
+function closeModal(){document.getElementById('modal').classList.remove('active');}
+document.getElementById('mclose').addEventListener('click',closeModal);
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+document.getElementById('subBtn').addEventListener('click',async function(){
+  const name=document.getElementById('iname').value.trim()||'(미입력)';
+  const contact=document.getElementById('icontact').value.trim()||'(미입력)';
+  const plan=document.getElementById('iplan').value||'(미선택)';
+  const msg=document.getElementById('imsg').value.trim()||'(미입력)';
+  document.getElementById('msummary').innerHTML='<b>닉네임</b>: '+name+'<br><b>연락 수단</b>: '+contact+'<br><b>선택 플랜</b>: '+plan+'<br><b>고민 내용</b>: '+msg;
+  document.getElementById('modal').classList.add('active');
+  this.disabled=true;this.textContent='전송 중...';
+  try{
+    await fetch('https://formspree.io/f/xdapzdkd',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({_subject:'[썸로그 상담신청] '+name+' · '+plan,닉네임:name,연락수단:contact,선택플랜:plan,고민내용:msg})
+    });
+  }catch(e){}
+  this.disabled=false;this.textContent='💌 상담 신청하기';
+});
+</script>
+</body>
+</html>
